@@ -1,0 +1,9 @@
+PORT = 3001
+HOST = "localhost"
+USER = "root"
+PASSWORD = ""
+DB = ""
+SALT = 10
+PASS = ""
+TOKEN_SECRET = ""
+TOKEN_AUTH_NAME = "auth-token"
