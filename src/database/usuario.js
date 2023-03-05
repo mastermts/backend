@@ -14,7 +14,7 @@ exports.getOneUsuario = async (usuario, validar=true) => {
   try {
     let query = "SELECT usuarios.id, usuarios.usuario, usuarios.password, usuarios.Rol_id, roles.nombre as 'Rol_nombre' FROM usuarios, roles WHERE usuarios.Rol_id = roles.id AND usuario = ?";
     let [result] = await sql.query(query, usuario);
-    if (!result && validar) {
+    if (!result || validar) {
       throw {
         status: 400,
         message: `No existe el usuario: '${usuario}'`,
