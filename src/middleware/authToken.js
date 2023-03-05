@@ -5,7 +5,7 @@ const moment = require('moment');
 exports.validarToken = (req, res, next) => {
     try {
         const token = req.header(config.TOKEN_AUTH_NAME);
-        //validar si llego el token
+        //validar si llegó el token
         if (!token)
             return res
                 .status(401)
@@ -24,7 +24,7 @@ exports.validarToken = (req, res, next) => {
                     data: { error: "Acceso denegado" },
                 });
 
-        // comprobar si el token expirado
+        // comprobar si el token ha expirado
         if (tokenDecode.tiempoExpiracion <= moment().unix()) {
             return res
                 .status(401)

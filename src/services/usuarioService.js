@@ -2,8 +2,8 @@ const dbUsuario = require('../database/usuario');
 
 // constructor
 const usuario = function (usuario) {
-  if(usuario.id) this.id = usuario.id
-  this.usuario = usuario.usuario
+  if(usuario.id && usuario.id != '') this.id = usuario.id
+  if(usuario.usuario && usuario.usuario != '') this.usuario = usuario.usuario
   if(usuario.password && usuario.password != '') this.password = usuario.password
   if(usuario.Rol_id && usuario.Rol_id != '') this.Rol_id = usuario.Rol_id
   if(usuario.estado && usuario.estado != '') this.estado = usuario.estado
