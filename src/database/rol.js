@@ -15,13 +15,16 @@ exports.getOneRol = async (rol, validar=true) => {
     let query = "SELECT * FROM roles WHERE nombre = ?";
     let [result] = await sql.query(query, rol);
 
-    if (!result || validar) {
-      throw {
-        status: 400,
-        message: `No existe el rol: '${rol}'`,
-      };
+    if (!result) {
+      if(validar){
+        throw {
+          status: 400,
+          message: `No existe el rol: '${rol}'`,
+        };
+      }
+      return false;
     }
-    return result[0] || false;
+    return result[0];
   } catch (error) {
     throw { status: error?.status || 500, message: error?.message || error };
   }
