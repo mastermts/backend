@@ -10,9 +10,7 @@ exports.createToken = (usuario) => {
     usuario: usuario.usuario,
     rol: usuario.Rol_nombre,
 
-    tiempoInicio: moment().unix(),
-    tiempoExpiracion: moment().add(1, 'days').unix()
-  }, process.env.TOKEN_SECRET)
+  }, process.env.TOKEN_SECRET, {expiresIn:config.TOKEN_TIME})
   return token;
 };
 
@@ -26,7 +24,7 @@ exports.getLogin = async (req, res) => {
       .status(400)
       .send({
         status: "FAILED",
-        data: { error: "Parametros 'usuario', 'password' no puede estar vacio" },
+        data: { error: "Parámetros 'usuario', 'password' no puede estar vacío" },
       });
   }
  
@@ -43,7 +41,7 @@ exports.getLogin = async (req, res) => {
             usuario: dbUsuario.usuario,
             rol: dbUsuario.Rol_nombre,
           },
-          token: this.createToken(usuario)
+          token: this.createToken(dbUsuario)
         }
       });
 
