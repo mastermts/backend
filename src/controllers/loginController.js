@@ -2,7 +2,6 @@ const usuarioService = require("../services/usuarioService");
 const config = require('../config/env')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-const moment = require('moment');
 
 exports.createToken = (usuario) => {
   let token = jwt.sign({

@@ -15,7 +15,7 @@ const validarToken = async(req, res, next) => {
   try {
     const payload = jwt.verify(token, config.TOKEN_SECRET)
     const usuario = await dbUsuario.getOneUsuarioId(payload.id)
-    req.locals = { usuario}
+    req.locals = {usuario}
     next()
   } catch (error) {
     return res

@@ -15,17 +15,8 @@ exports.getAllUsuarios = async (req, res) => {
 };
 
 exports.getOneUsuario = async (req, res) => {
-  const {
-    params: { usuario },
-  } = req;
-  if (!usuario) {
-    res
-      .status(400)
-      .send({
-        status: "FAILED",
-        data: { error: "Parametro ':usuario' no puede estar vacio" },
-      });
-  }
+  const {usuario} = req.params;
+
   try {
     const data = await usuarioService.getOneUsuario(usuario);
 
@@ -48,22 +39,6 @@ exports.getOneUsuario = async (req, res) => {
 
 exports.createNewUsuario = async (req, res) => {
   const { body } = req;
-  if (
-    !body.usuario ||
-    !body.password ||
-    !body.Rol_id
-  ) {
-    res
-      .status(400)
-      .send({
-        status: "FAILED",
-        data: {
-          error:
-            "Falta una de las siguientes claves: 'usuario', 'password' , 'Rol_id'",
-        },
-      });
-    return;
-  }
 
   // Crear un Usuario
   const newUsuario = new usuarioService({
@@ -85,10 +60,7 @@ exports.createNewUsuario = async (req, res) => {
 };
 
 exports.updateOneUsuario = async (req, res) => {
-  const {
-    body,
-    params: { usuarioId },
-  } = req;
+  const { usuarioId } = req.params;
 
   if (!usuarioId || !body) {
     res

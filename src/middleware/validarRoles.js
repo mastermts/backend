@@ -1,7 +1,7 @@
 const validarRoles = (...roles) => {
   return (req, res, next) => {
-    console.log(req.locals.usuario.Rol_nombre)
-    if (roles.includes(req.locals.usuario.Rol_nombre)) {
+    //console.log(req.locals.usuario[0].Rol_nombre)
+    if (roles.includes(req.locals.usuario[0].Rol_nombre)) {
       return next()
     }
     return res

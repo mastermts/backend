@@ -10,6 +10,7 @@ const v1Router = require("./v1/routes");
 app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("/api/v1", v1Router);
 
